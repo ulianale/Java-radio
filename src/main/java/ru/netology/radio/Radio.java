@@ -3,17 +3,22 @@ package ru.netology.radio;
 public class Radio {
     private int currentNumberOfRadio;
     private int currentVolume;
+    private boolean valid;     // добавила чтобы проверить допустимость номера радиостанции
 
     public int getNumberOfRadio() {
         return currentNumberOfRadio;
     }
 
-    public boolean getValidRadio() { // допустимость радиостанции
-        return currentNumberOfRadio >= 0 && currentNumberOfRadio <= 9;
+    public void setNumberOfRadio(int newNumberOfRadio) {
+        if (newNumberOfRadio < 0 || newNumberOfRadio > 9) {
+            return;
+        }
+        currentNumberOfRadio = newNumberOfRadio;
+        valid = true;
     }
 
-    public void setNumberOfRadio(int newNumberOfRadio) {
-        currentNumberOfRadio = newNumberOfRadio;
+    public boolean getValidRadio() { // допустимость радиостанции
+        return valid;
     }
 
     public void next() {
