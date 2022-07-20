@@ -5,33 +5,33 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    @Test                                   // проверка на допустимость номера радиостанции
+    @Test
     public void shouldSetValidRadio() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(7);
 
-        boolean expected = true;
-        boolean actual = radio.getValidRadio();
+        int expected = 7;
+        int actual = radio.getNumberOfRadio();
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test                                   // проверка на допустимость номера радиостанции
+    @Test
     public void shouldSetInValidRadio1() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(-1);
 
-        boolean expected = false;
-        boolean actual = radio.getValidRadio();
+        int expected = 0;
+        int actual = radio.getNumberOfRadio();
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test                                   // проверка на допустимость номера радиостанции
+    @Test
     public void shouldSetInvalidRadio2() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(10);
 
-        boolean expected = false;
-        boolean actual = radio.getValidRadio();
+        int expected = 0;
+        int actual = radio.getNumberOfRadio();
         Assertions.assertEquals(expected, actual);
     }
 
