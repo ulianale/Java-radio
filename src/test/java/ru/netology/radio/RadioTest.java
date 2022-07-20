@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-    public void shouldSetValidRadio() {
+    public void shouldSetValidRadio1() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(7);
 
