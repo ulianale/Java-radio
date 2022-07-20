@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    @Test                                   // проверка на допустимость номера радиостанции
-    public void shouldSetValidRadio() {
+    // проверки на допустимость номера радиостанции
+
+    @Test
+    public void shouldSetValidRadio1() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(7);
 
@@ -15,7 +17,17 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test                                   // проверка на допустимость номера радиостанции
+    @Test
+    public void shouldSetValidRadio2() {
+        Radio radio = new Radio(100);
+        radio.setNumberOfRadio(99);
+
+        boolean expected = true;
+        boolean actual = radio.getValidRadio();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSetInValidRadio1() {
         Radio radio = new Radio();
         radio.setNumberOfRadio(-1);
@@ -25,9 +37,9 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test                                   // проверка на допустимость номера радиостанции
+    @Test
     public void shouldSetInvalidRadio2() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(0);
         radio.setNumberOfRadio(10);
 
         boolean expected = false;
@@ -35,9 +47,22 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    // проверки переключения на следущую радиостанцию
+
     @Test
     public void shouldNext1() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(5);
+        radio.setNumberOfRadio(4);
+        radio.next();
+
+        int expected = 0;
+        int actual = radio.getNumberOfRadio();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNext2() {
+        Radio radio = new Radio(0);
         radio.setNumberOfRadio(8);
         radio.next();
 
@@ -46,11 +71,13 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    // проверки переключения на предыдущую радиостанцию
+
     @Test
-    public void shouldNext2() {
-        Radio radio = new Radio();
-        radio.setNumberOfRadio(9);
-        radio.next();
+    public void shouldPrev1() {
+        Radio radio = new Radio(1);
+        radio.setNumberOfRadio(0);
+        radio.prev();
 
         int expected = 0;
         int actual = radio.getNumberOfRadio();
@@ -58,19 +85,19 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldPrev1() {
-        Radio radio = new Radio();
+    public void shouldPrev2() {
+        Radio radio = new Radio(101);
         radio.setNumberOfRadio(0);
         radio.prev();
 
-        int expected = 9;
+        int expected = 100;
         int actual = radio.getNumberOfRadio();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldPrev2() {
-        Radio radio = new Radio();
+    public void shouldPrev3() {
+        Radio radio = new Radio(2);
         radio.setNumberOfRadio(1);
         radio.prev();
 
@@ -78,6 +105,8 @@ public class RadioTest {
         int actual = radio.getNumberOfRadio();
         Assertions.assertEquals(expected, actual);
     }
+
+    // проверка на увеличение громкости
 
     @Test
     public void shouldSetIncreaseVolume1() {
@@ -93,10 +122,10 @@ public class RadioTest {
     @Test
     public void shouldSetIncreaseVolume2() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
@@ -104,13 +133,15 @@ public class RadioTest {
     @Test
     public void shouldSetIncreaseVolume3() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
         radio.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
+
+    // проверка на уменьшение громкости
 
     @Test
     public void shouldSetDecreaseVolume1() {
