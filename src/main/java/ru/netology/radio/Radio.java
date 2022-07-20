@@ -9,7 +9,7 @@ public class Radio {
     private int minVolume = 0;
     private int maxVolume = 100;
     private int currentVolume;
-    boolean valid;                // добавила чтобы проверить допустимость номера радиостанции
+    private boolean valid;                // добавила чтобы проверить допустимость номера радиостанции
 
 
     public Radio() {
